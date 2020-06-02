@@ -1,2 +1,5 @@
 # nginx-in-action
-A descriptive notes of nginx working processes and my learnings
+
+Let's Start nginx learning from beginning. 
+
+### Directive: 
