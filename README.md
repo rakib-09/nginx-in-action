@@ -17,4 +17,4 @@ Let's Start learning nginx from beginning.
   * Bunch of Simple directive will be grouped together with *({})*.
   * Nginx core directive located in `/etc/nginx/nginx.conf`.
   
-***Full NGINX Example file can be find*** <a href="https://www.nginx.com/resources/wiki/start/topics/examples/full/">here </a>
+***Full NGINX Example file can be find*** <a href="https://www.nginx.com/resources/wiki/start/topics/examples/full/" target="_blank"> here </a>
