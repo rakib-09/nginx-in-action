@@ -13,3 +13,6 @@ Let's Start learning nginx from beginning.
   * There are two types of directive: 
     * Simple directive
     * Block Directive
+  * Every line of directive should ends with (;).
+  * Bunch of Simple directive will be grouped together with *({})*.
+  * Nginx core directive located in `/etc/nginx/nginx.conf`.
