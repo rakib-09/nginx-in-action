@@ -40,3 +40,7 @@ error_log logs/error.log warn;
 ```
   * `PID`: In simple word, it records the process ids of nginx. You may ask why do i need this ? 
            the answer is you need this for monitoring, restarting etc.
+           Yes! of course you can find it out using `ps -ef | grep nginx| grep master | awk '{$2}'`. 
+           now choice is yours! whether you want to log this using `/var/run/nginx.pid` in nginx or writing that command :)
+  * `events`: There can only one event in whole nginx file. and you need to keep it in the main file.
+         * `worker_connections`: It actually refered that, how many people nginx can be served simultaniously. you need  to    multiply 1024 with `worker_processes`. if you have 2 `worker_processes` then it should be 2048. 
