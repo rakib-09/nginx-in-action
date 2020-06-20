@@ -43,4 +43,8 @@ error_log logs/error.log warn;
            Yes! of course you can find it out using `ps -ef | grep nginx| grep master | awk '{$2}'`. 
            now choice is yours! whether you want to log this using `/var/run/nginx.pid` in nginx or writing that command :)
   * `events`: There can only one event in whole nginx file. and you need to keep it in the main file.
-         * `worker_connections`: It actually refered that, how many people nginx can be served simultaniously. you need  to    multiply 1024 with `worker_processes`. if you have 2 `worker_processes` then it should be 2048. 
+         * `worker_connections`: It actually refered that, how many people nginx can be served simultaniously. you need  to    multiply 1024 with `worker_processes`. if you have 2 `worker_processes` then it should be 2048 (default 1024). 
+         * `multi_accept`: It defines whether your every `worker_process` can accept multiple user at a time or not.(default: off)
+         * `accept_mutex`: If its enabled It makes nginx worker to accept one after another. If disabled, It will notify all the workers that new connection has arrived. which is totally waste of your resource. (Default: on)
+         * `accept_mutex_delay`: It only works when `accept_mutex` is enabled. suppose if its 500ms then every 500ms nginx checks workers ae available or not. (Default: 500ms)
+         
