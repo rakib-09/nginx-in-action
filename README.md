@@ -56,17 +56,25 @@ error_log logs/error.log warn;
          What do you think how browser knows which file need to be downloaded or which need to be parsed ? 
          - Yes! you are right. It's from nginx this line:
          
-         ```
-         include    conf/mime.types;
-         ```
+ ```
+ include    conf/mime.types;
+ ```
+ 
          this file looks like like this:
          
-         ```
-         types {
-             text/html     html htm shtml;
-             text/css      css;
-             text/xml      xml;
-             .....
-             }
-          ```
-          
+ ```
+ types {
+     text/html     html htm shtml;
+     text/css      css;
+     text/xml      xml;
+     .....
+     }
+ ```
+ 
+          * `default_type`: one of the most interesting part of nginx. what do you think how nginx handle your unknown file_type ? Nginx always tell browser if you don't know the file_type ask user to download this. :D 
+          this `default_type` directive do this. 
+usage: 
+```
+default_type application/octet-stream;
+```
+
