@@ -48,8 +48,7 @@ error_log logs/error.log warn;
          * `accept_mutex`: If its enabled It makes nginx worker to accept one after another. If disabled, It will notify all the workers that new connection has arrived. which is totally waste of your resource. (Default: on)
          * `accept_mutex_delay`: It only works when `accept_mutex` is enabled. suppose if its 500ms then every 500ms nginx checks workers ae available or not. (Default: 500ms)
          
-   * `Http`: This is the most important part of nginx configuration.
-   
+   * `Http`: This is the most important part of nginx configuration.  
          * `include`: suppose you want to have a zip file in a link. 
          what browser do on that time ? Does browser try to open it or give you a scope to download ? 
          - Ofcourse browser gives you a scope to download it rather than opening. 
