@@ -54,27 +54,50 @@ error_log logs/error.log warn;
          - Ofcourse browser gives you a scope to download it rather than opening. 
          Same goes for html file. When you try to link a link which contains html file. browser never show you that page like          `<h1>Hello Nginx! </h1>` rather it shows you ***Hello Nginx*** right ?
          What do you think how browser knows which file need to be downloaded or which need to be parsed ? 
-         - Yes! you are right. It's from nginx this line:
+         - Yes! you are right. It's from nginx this line:      
          
- ```
- include    conf/mime.types;
- ```
- 
-         this file looks like like this:
+             ```
+             include    conf/mime.types;
+             ```
+             
+this file looks like like this:
          
- ```
- types {
-     text/html     html htm shtml;
-     text/css      css;
-     text/xml      xml;
-     .....
-     }
- ```
+            ```
+            types {
+                text/html     html htm shtml;
+                text/css      css;
+                text/xml      xml;
+                .....
+                }
+            ```
  
-          * `default_type`: one of the most interesting part of nginx. what do you think how nginx handle your unknown file_type ? Nginx always tell browser if you don't know the file_type ask user to download this. :D 
-          this `default_type` directive do this. 
+* `default_type`: one of the most interesting part of nginx. what do you think how nginx handle your unknown file_type ? Nginx always tell browser if you don't know the file_type ask user to download this. :D 
+this `default_type` directive do this. 
 usage: 
 ```
 default_type application/octet-stream;
 ```
+* `log_format`: This describe how you wants to see your log. 
+
+```
+$remote_addr       user ip address
+$remote_user       user name
+$time_local        local time of serving
+......
+```
+here `main` means default log format. you can define any other name like `debug`, `reference` etc...
+
+* `access_log`: Nginx keeps All the request logs to your web server here. 
+    ```
+     access_log   logs/access.log  main;
+    ```
+    Now you already know what main means. right ?
+* `send_file`: One of the most interesting directive of nginx. This ensure that nginx operations will not block disk I/O. If you request for a large file nginx covert it into chunks instead of block whole I/O. So the server blocking can be eliminated. 
+So, you should always keep this on.(Default on)
+```
+sendfile     on;
+```
+* `tcp_nopush`: This instruct nginx to send Header in one packet first. and then send full body in another packet.(default: on)
+* `keepalive_timout`: This instruct nginx how much time will keep worker_connection open for each client.(default: 65s)
+* `gzip`: If you keep this on it will send compressed data to the browser in enchance the performance. Besides, Browser has to accept gzip compression. Most modern browser have it already.
 
