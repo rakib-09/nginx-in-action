@@ -41,10 +41,31 @@ error_log logs/error.log warn;
   * `PID`: In simple word, it records the process ids of nginx. You may ask why do i need this ? 
            the answer is you need this for monitoring, restarting etc.
            Yes! of course you can find it out using `ps -ef | grep nginx| grep master | awk '{$2}'`. 
-           now choice is yours! whether you want to log this using `/var/run/nginx.pid` in nginx or writing that command :)
+           now choice is yours! whether you want to log this using `/var/run/nginx.pid` in nginx or writing that command.
   * `events`: There can only one event in whole nginx file. and you need to keep it in the main file.
          * `worker_connections`: It actually refered that, how many people nginx can be served simultaniously. you need  to    multiply 1024 with `worker_processes`. if you have 2 `worker_processes` then it should be 2048 (default 1024). 
          * `multi_accept`: It defines whether your every `worker_process` can accept multiple user at a time or not.(default: off)
          * `accept_mutex`: If its enabled It makes nginx worker to accept one after another. If disabled, It will notify all the workers that new connection has arrived. which is totally waste of your resource. (Default: on)
          * `accept_mutex_delay`: It only works when `accept_mutex` is enabled. suppose if its 500ms then every 500ms nginx checks workers ae available or not. (Default: 500ms)
          
+   * `Http`: This is the most important part of nginx configuration. 
+         * `include`: suppose you want to have a zip file in a link. 
+         what browser do on that time ? Does browser try to open it or give you a scope to download ? 
+         - Ofcourse browser gives you a scope to download it rather than opening. 
+         Same goes for html file. When you try to link a link which contains html file. browser never show you that page like          `<h1>Hello Nginx! </h1>` rather it shows you ***Hello Nginx*** right ?
+         What do you think how browser knows which file need to be downloaded or which need to be parsed ? 
+         - Yes! you are right. It's from nginx this line:
+         ```
+         include    conf/mime.types;
+         ```
+         this file looks like like this:
+         
+         ```
+         types {
+             text/html     html htm shtml;
+             text/css      css;
+             text/xml      xml;
+             .....
+             }
+          ```
+          
