@@ -48,13 +48,15 @@ error_log logs/error.log warn;
          * `accept_mutex`: If its enabled It makes nginx worker to accept one after another. If disabled, It will notify all the workers that new connection has arrived. which is totally waste of your resource. (Default: on)
          * `accept_mutex_delay`: It only works when `accept_mutex` is enabled. suppose if its 500ms then every 500ms nginx checks workers ae available or not. (Default: 500ms)
          
-   * `Http`: This is the most important part of nginx configuration. 
+   * `Http`: This is the most important part of nginx configuration.
+   
          * `include`: suppose you want to have a zip file in a link. 
          what browser do on that time ? Does browser try to open it or give you a scope to download ? 
          - Ofcourse browser gives you a scope to download it rather than opening. 
          Same goes for html file. When you try to link a link which contains html file. browser never show you that page like          `<h1>Hello Nginx! </h1>` rather it shows you ***Hello Nginx*** right ?
          What do you think how browser knows which file need to be downloaded or which need to be parsed ? 
          - Yes! you are right. It's from nginx this line:
+         
          ```
          include    conf/mime.types;
          ```
